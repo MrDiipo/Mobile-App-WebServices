@@ -1,7 +1,9 @@
 package com.dipo.mobileappwebservice.ui.controller;
 
+import com.dipo.mobileappwebservice.shared.dto.UserDto;
 import com.dipo.mobileappwebservice.ui.model.request.UserDetailRequestModel;
 import com.dipo.mobileappwebservice.ui.model.response.UserRest;
+import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,7 +17,16 @@ public class UserController {
 
     @PostMapping
     public UserRest createUser(@RequestBody UserDetailRequestModel userDetails){
-        return null;
+
+        UserRest returnValue = new UserRest();
+
+        UserDto userDto = new UserDto();
+        BeanUtils.copyProperties(userDetails, userDto);
+
+        UserDto createdUser = userService.createUser(UserDto);
+        BeanUtils.copyProperties(createdUser, returnValue);
+
+        return returnValue;
     }
 
     @PutMapping
