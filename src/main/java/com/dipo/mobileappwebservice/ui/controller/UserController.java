@@ -1,6 +1,7 @@
 package com.dipo.mobileappwebservice.ui.controller;
 
 import com.dipo.mobileappwebservice.ui.model.request.UserDetailRequestModel;
+import com.dipo.mobileappwebservice.ui.model.response.UserRest;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -13,8 +14,8 @@ public class UserController {
     }
 
     @PostMapping
-    public String createUser(@RequestBody UserDetailRequestModel userDetails){
-        return "Create user was called";
+    public UserRest createUser(@RequestBody UserDetailRequestModel userDetails){
+        return null;
     }
 
     @PutMapping
