@@ -1,5 +1,6 @@
 package com.dipo.mobileappwebservice.ui.controller;
 
+import com.dipo.mobileappwebservice.service.impl.UserService;
 import com.dipo.mobileappwebservice.shared.dto.UserDto;
 import com.dipo.mobileappwebservice.ui.model.request.UserDetailRequestModel;
 import com.dipo.mobileappwebservice.ui.model.response.UserRest;
@@ -27,7 +28,7 @@ public class UserController {
         UserDto userDto = new UserDto();
         BeanUtils.copyProperties(userDetails, userDto);
 
-        UserDto createdUser = userService.createUser(UserDto);
+        UserDto createdUser = userService.createUser(userDto);
         BeanUtils.copyProperties(createdUser, returnValue);
 
         return returnValue;
