@@ -4,11 +4,15 @@ import com.dipo.mobileappwebservice.shared.dto.UserDto;
 import com.dipo.mobileappwebservice.ui.model.request.UserDetailRequestModel;
 import com.dipo.mobileappwebservice.ui.model.response.UserRest;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/users") // http://localhost:8080/users
 public class UserController {
+
+    @Autowired
+    UserService userService;
 
     @GetMapping
     public String getUser(){
