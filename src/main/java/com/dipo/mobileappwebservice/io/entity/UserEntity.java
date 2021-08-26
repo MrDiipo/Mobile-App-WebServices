@@ -16,7 +16,6 @@ public class UserEntity implements Serializable {
     private static final long serialVersionUID = -7849005537474284228L;
 
     @javax.persistence.Id
-    @Id
     @GeneratedValue
     private long id;
 

@@ -12,8 +12,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/users") // http://localhost:8080/users
 public class UserController {
 
+    private UserService userService;
+
     @Autowired
-    UserService userService;
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping
     public String getUser(){
@@ -43,4 +47,5 @@ public class UserController {
     public String deleteUser(){
         return "Delete user was called";
     }
+
 }
