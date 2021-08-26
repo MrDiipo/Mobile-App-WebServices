@@ -13,7 +13,7 @@ public class UserDto implements Serializable {
     private String lastName;
     private String encryptedPassword;
     private String emailVerificationPassword;
-    private String emailVerificationStatus;
+    private boolean emailVerificationStatus = false;
 
     public long getId() {
         return id;
