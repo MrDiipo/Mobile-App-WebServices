@@ -2,6 +2,7 @@ package com.dipo.mobileappwebservice.service.impl;
 
 import com.dipo.mobileappwebservice.UserRepository;
 import com.dipo.mobileappwebservice.io.entity.UserEntity;
+import com.dipo.mobileappwebservice.shared.Utils;
 import com.dipo.mobileappwebservice.shared.dto.UserDto;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private Utils utils;
+
 
     @Override
     public UserDto createUser(UserDto user) {
@@ -22,8 +26,9 @@ public class UserServiceImpl implements UserService {
         UserEntity userEntity = new UserEntity();
         BeanUtils.copyProperties(user, userEntity);
 
+        String publicUserId = utils.generateUserId(30);
         userEntity.setEncryptedPassword("test");
-        userEntity.setUserId("testUserId");
+        userEntity.setUserId(publicUserId);
         UserEntity storedUserDetails = userRepository.save(userEntity);
 
         UserDto returnValue = new UserDto();
