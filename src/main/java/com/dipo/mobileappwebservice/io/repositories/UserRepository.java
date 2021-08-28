@@ -1,4 +1,4 @@
-package com.dipo.mobileappwebservice;
+package com.dipo.mobileappwebservice.io.repositories;
 
 import com.dipo.mobileappwebservice.io.entity.UserEntity;
 import org.springframework.data.repository.CrudRepository;

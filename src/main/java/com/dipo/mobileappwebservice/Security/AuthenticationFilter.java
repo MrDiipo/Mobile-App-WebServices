@@ -1,5 +1,8 @@
 package com.dipo.mobileappwebservice.Security;
 
+import com.dipo.mobileappwebservice.SpringApplicationContext;
+import com.dipo.mobileappwebservice.service.impl.UserService;
+import com.dipo.mobileappwebservice.shared.dto.UserDto;
 import com.dipo.mobileappwebservice.ui.model.request.UserLoginRequestModel;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;
@@ -47,7 +50,11 @@ public class AuthenticationFilter  extends UsernamePasswordAuthenticationFilter 
                 .signWith(SignatureAlgorithm.HS512, SecurityConstants.TOKEN_SECRET)
                 .compact();
 
+        UserService userService = (UserService) SpringApplicationContext.getBean("userServiceImpl");
+
+        UserDto userDto = userService.getUser(userName);
         res.addHeader(SecurityConstants.HEADER_STRING, SecurityConstants.TOKEN_PREFIX + token);
+        res.addHeader("UserID", userDto.getUserId());
     }
 
 }
