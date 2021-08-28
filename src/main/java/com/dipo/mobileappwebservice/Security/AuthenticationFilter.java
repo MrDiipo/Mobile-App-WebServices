@@ -37,7 +37,8 @@ public class AuthenticationFilter  extends UsernamePasswordAuthenticationFilter 
         }
     }
 
-    protected void successfulAuthentication(HttpServletResponse req, HttpServletRequest res,
+    @Override
+    protected void successfulAuthentication(HttpServletRequest req, HttpServletResponse res,
                                             FilterChain chain, Authentication auth) throws IOException, ServletException {
         String userName = ((User) auth.getPrincipal()).getUsername();
 
@@ -46,7 +47,7 @@ public class AuthenticationFilter  extends UsernamePasswordAuthenticationFilter 
                 .signWith(SignatureAlgorithm.HS512, SecurityConstants.TOKEN_SECRET)
                 .compact();
 
-        res.setAttribute(SecurityConstants.HEADER_STRING, SecurityConstants.TOKEN_PREFIX + token);
+        res.addHeader(SecurityConstants.HEADER_STRING, SecurityConstants.TOKEN_PREFIX + token);
     }
 
 }
