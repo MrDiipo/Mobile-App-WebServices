@@ -1,5 +1,7 @@
 package com.dipo.mobileappwebservice.ui.controller;
 
+import com.dipo.mobileappwebservice.io.entity.UserEntity;
+import com.dipo.mobileappwebservice.io.repositories.UserRepository;
 import com.dipo.mobileappwebservice.service.impl.UserService;
 import com.dipo.mobileappwebservice.shared.dto.UserDto;
 import com.dipo.mobileappwebservice.ui.model.request.UserDetailRequestModel;
@@ -19,9 +21,16 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping
-    public String getUser(){
-        return "get user was called";
+    @GetMapping("/{userId}")
+    public UserRest getUser(@PathVariable("userId") String userId){
+
+        UserRest userRest = new UserRest();
+
+        UserDto userDto = userService.getUserById(userId);
+
+        BeanUtils.copyProperties(userDto, userRest);
+
+        return userRest;
     }
 
     @PostMapping
