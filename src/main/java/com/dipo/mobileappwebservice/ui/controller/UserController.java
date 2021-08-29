@@ -1,10 +1,12 @@
 package com.dipo.mobileappwebservice.ui.controller;
 
+import com.dipo.mobileappwebservice.exceptions.UserServiceException;
 import com.dipo.mobileappwebservice.io.entity.UserEntity;
 import com.dipo.mobileappwebservice.io.repositories.UserRepository;
 import com.dipo.mobileappwebservice.service.impl.UserService;
 import com.dipo.mobileappwebservice.shared.dto.UserDto;
 import com.dipo.mobileappwebservice.ui.model.request.UserDetailRequestModel;
+import com.dipo.mobileappwebservice.ui.model.response.ErrorMessages;
 import com.dipo.mobileappwebservice.ui.model.response.UserRest;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,9 +40,11 @@ public class UserController {
             consumes = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE},
             produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE }
     )
-    public UserRest createUser(@RequestBody UserDetailRequestModel userDetails){
+    public UserRest createUser(@RequestBody UserDetailRequestModel userDetails) throws Exception{
 
         UserRest returnValue = new UserRest();
+
+        if (userDetails.getFirstName().isEmpty()) throw new UserServiceException(ErrorMessages.MISSING_REQUIRED_FIELD.getErrorMessage());
 
         UserDto userDto = new UserDto();
         BeanUtils.copyProperties(userDetails, userDto);

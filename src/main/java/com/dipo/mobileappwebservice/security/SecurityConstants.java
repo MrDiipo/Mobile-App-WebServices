@@ -1,4 +1,4 @@
-package com.dipo.mobileappwebservice.Security;
+package com.dipo.mobileappwebservice.security;
 
 import com.dipo.mobileappwebservice.SpringApplicationContext;
 
