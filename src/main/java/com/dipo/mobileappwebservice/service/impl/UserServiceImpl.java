@@ -62,8 +62,8 @@ public class UserServiceImpl implements UserService {
 
         UserDto returnValue = new UserDto();
 
-        UserEntity returnEntity = userRepository.findById(userId);
-        if (returnEntity == null) throw new UsernameNotFoundException(userId)
+        UserEntity returnEntity = userRepository.findByUserId(userId);
+        if (returnEntity == null) throw new UsernameNotFoundException(userId);
 
         BeanUtils.copyProperties(returnEntity, returnValue);
 
