@@ -1,9 +1,11 @@
 package com.dipo.mobileappwebservice.service.impl;
 
+import com.dipo.mobileappwebservice.exceptions.UserServiceException;
 import com.dipo.mobileappwebservice.io.repositories.UserRepository;
 import com.dipo.mobileappwebservice.io.entity.UserEntity;
 import com.dipo.mobileappwebservice.shared.Utils;
 import com.dipo.mobileappwebservice.shared.dto.UserDto;
+import com.dipo.mobileappwebservice.ui.model.response.ErrorMessages;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -66,6 +68,21 @@ public class UserServiceImpl implements UserService {
         if (returnEntity == null) throw new UsernameNotFoundException(userId);
 
         BeanUtils.copyProperties(returnEntity, returnValue);
+
+        return returnValue;
+    }
+
+    @Override
+    public UserDto updateUser(String userId, UserDto user) {
+        UserDto returnValue = new UserDto();
+
+        UserEntity returnEntity = userRepository.findByUserId(userId);
+        if (returnEntity == null) throw new UserServiceException(ErrorMessages.NO_RECORD_FOUND.getErrorMessage());
+
+        returnEntity.setFirstName(user.getFirstName());
+        returnEntity.setLastName(user.getLastName());
+        UserEntity updatedUser = userRepository.save(returnEntity);
+        BeanUtils.copyProperties(updatedUser, returnValue);
 
         return returnValue;
     }
