@@ -1,12 +1,12 @@
 package com.dipo.mobileappwebservice.ui.controller;
 
 import com.dipo.mobileappwebservice.exceptions.UserServiceException;
-import com.dipo.mobileappwebservice.io.entity.UserEntity;
-import com.dipo.mobileappwebservice.io.repositories.UserRepository;
 import com.dipo.mobileappwebservice.service.impl.UserService;
 import com.dipo.mobileappwebservice.shared.dto.UserDto;
 import com.dipo.mobileappwebservice.ui.model.request.UserDetailRequestModel;
 import com.dipo.mobileappwebservice.ui.model.response.ErrorMessages;
+import com.dipo.mobileappwebservice.ui.model.response.OperationStatusModel;
+import com.dipo.mobileappwebservice.ui.model.response.RequestOperationStatus;
 import com.dipo.mobileappwebservice.ui.model.response.UserRest;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +55,8 @@ public class UserController {
         return returnValue;
     }
 
-    @PutMapping( path = "{/userId}",consumes = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE},
+    @PutMapping( path = "/{userId}",
+            consumes = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE},
             produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
     public UserRest updateUser(@PathVariable String userId, @RequestBody UserDetailRequestModel userDetails){
         UserRest returnValue = new UserRest();
@@ -71,9 +72,16 @@ public class UserController {
         return returnValue;
     }
 
-    @DeleteMapping
-    public String deleteUser(){
-        return "Delete user was called";
+    @DeleteMapping( path = "/{userId}",
+            produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
+    public OperationStatusModel deleteUser(@PathVariable String userId){
+
+        OperationStatusModel operationStatusModel = new OperationStatusModel();
+
+        operationStatusModel.setOperationName(RequestOperationName.DELETE.name());
+        operationStatusModel.setOperationResult(RequestOperationStatus.SUCCESS.name());
+
+        return operationStatusModel;
     }
 
 }
