@@ -1,11 +1,23 @@
 package com.dipo.mobileappwebservice.ui.model.request;
 
+import java.util.List;
+
 public class UserDetailRequestModel {
 
     private String firstName;
     private String lastName;
     private String email;
     private String password;
+
+    public List<AddressRequestModel> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<AddressRequestModel> addresses) {
+        this.addresses = addresses;
+    }
+
+    private List<AddressRequestModel> addresses;
 
 
     public String getFirstName() {
