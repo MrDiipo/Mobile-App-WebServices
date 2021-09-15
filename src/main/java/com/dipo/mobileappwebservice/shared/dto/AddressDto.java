@@ -2,11 +2,13 @@ package com.dipo.mobileappwebservice.shared.dto;
 
 public class AddressDto {
 
+    private long id;
     private String city;
     private String country;
     private String streetName;
     private String postalCode;
     private String type;
+    private  UserDto userDto;
 
     public String getCity() {
         return city;
