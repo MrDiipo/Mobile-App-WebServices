@@ -2,20 +2,31 @@ package com.dipo.mobileappwebservice.shared.dto;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.List;
 
 public class UserDto implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 4865903039190150223L;
+
     private long id;
+
     private String userId;
     private String firstName;
     private String lastName;
     private String email;
     private String password;
+
+
+
     private String encryptedPassword;
     private String emailVerificationPassword;
     private boolean emailVerificationStatus = false;
+    private List<AddressDto> addresses;
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
     public long getId() {
         return id;
@@ -79,6 +90,15 @@ public class UserDto implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+
+    public List<AddressDto> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<AddressDto> addresses) {
+        this.addresses = addresses;
     }
 
     public String getPassword() {
