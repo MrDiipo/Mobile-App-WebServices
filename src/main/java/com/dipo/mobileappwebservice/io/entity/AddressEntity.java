@@ -34,7 +34,7 @@ public class AddressEntity implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "users_id")
-    private UserDto userDto;
+    private UserEntity userDto;
 
     public String getCity() {
         return city;
@@ -86,11 +86,11 @@ public class AddressEntity implements Serializable {
         this.addressId = addressId;
     }
 
-    public UserDto getUserDto() {
+    public UserEntity getUserDto() {
         return userDto;
     }
 
-    public void setUserDto(UserDto userDto) {
+    public void setUserDto(UserEntity userDto) {
         this.userDto = userDto;
     }
 }
