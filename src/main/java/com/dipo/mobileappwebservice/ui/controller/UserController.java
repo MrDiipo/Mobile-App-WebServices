@@ -128,7 +128,7 @@ public class UserController {
         return returnValue;
     }
     @GetMapping(path = "/{userId}/addresses/{addressId}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
-    public AddressRest getUserAddress(@PathVariable("addressId") String userId,
+    public AddressRest getUserAddress(@PathVariable("userId") String userId,
                                       @PathVariable("addressId") String addressId) {
 
         AddressDto addressesDto = addressService.getAddress(addressId);
@@ -137,8 +137,15 @@ public class UserController {
 
         Link addressLink = linkTo(UserController.class).slash(userId).slash("addresses").slash("addressId").withSelfRel();
 
+        Link userLink = linkTo(UserController.class).slash(userId).slash("userId").withRel("user");
+
+        Link addressesLink = linkTo(UserController.class).slash(userId).slash("addresses").withRel("addresses");
+
         AddressRest addressRestModel = modelMapper.map(addressesDto, AddressRest.class);
+
         addressRestModel.add(addressLink);
+        addressRestModel.add(userLink);
+        addressRestModel.add(addressesLink);
 
         return modelMapper.map(addressesDto, AddressRest.class);
     }
