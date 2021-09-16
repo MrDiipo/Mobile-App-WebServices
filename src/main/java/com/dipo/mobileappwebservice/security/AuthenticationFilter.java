@@ -1,7 +1,7 @@
 package com.dipo.mobileappwebservice.security;
 
 import com.dipo.mobileappwebservice.SpringApplicationContext;
-import com.dipo.mobileappwebservice.service.impl.UserService;
+import com.dipo.mobileappwebservice.service.UserService;
 import com.dipo.mobileappwebservice.shared.dto.UserDto;
 import com.dipo.mobileappwebservice.ui.model.request.UserLoginRequestModel;
 import com.fasterxml.jackson.databind.ObjectMapper;

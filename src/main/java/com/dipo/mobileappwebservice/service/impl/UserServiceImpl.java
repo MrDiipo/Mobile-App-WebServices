@@ -3,6 +3,7 @@ package com.dipo.mobileappwebservice.service.impl;
 import com.dipo.mobileappwebservice.exceptions.UserServiceException;
 import com.dipo.mobileappwebservice.io.repositories.UserRepository;
 import com.dipo.mobileappwebservice.io.entity.UserEntity;
+import com.dipo.mobileappwebservice.service.UserService;
 import com.dipo.mobileappwebservice.shared.Utils;
 import com.dipo.mobileappwebservice.shared.dto.AddressDto;
 import com.dipo.mobileappwebservice.shared.dto.UserDto;

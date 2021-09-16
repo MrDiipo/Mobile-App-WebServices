@@ -1,15 +1,14 @@
 package com.dipo.mobileappwebservice.ui.controller;
 
 import com.dipo.mobileappwebservice.exceptions.UserServiceException;
-import com.dipo.mobileappwebservice.service.impl.AddressService;
-import com.dipo.mobileappwebservice.service.impl.UserService;
+import com.dipo.mobileappwebservice.service.AddressService;
+import com.dipo.mobileappwebservice.service.UserService;
 import com.dipo.mobileappwebservice.shared.dto.AddressDto;
 import com.dipo.mobileappwebservice.shared.dto.UserDto;
 import com.dipo.mobileappwebservice.ui.model.request.UserDetailRequestModel;
 import com.dipo.mobileappwebservice.ui.model.response.*;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
-import org.modelmapper.internal.bytebuddy.description.method.MethodDescription;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

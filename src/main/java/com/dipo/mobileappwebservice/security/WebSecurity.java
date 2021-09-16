@@ -1,6 +1,6 @@
 package com.dipo.mobileappwebservice.security;
 
-import com.dipo.mobileappwebservice.service.impl.UserService;
+import com.dipo.mobileappwebservice.service.UserService;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

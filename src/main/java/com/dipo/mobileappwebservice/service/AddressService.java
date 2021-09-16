@@ -1,4 +1,4 @@
-package com.dipo.mobileappwebservice.service.impl;
+package com.dipo.mobileappwebservice.service;
 
 import com.dipo.mobileappwebservice.shared.dto.AddressDto;
 
