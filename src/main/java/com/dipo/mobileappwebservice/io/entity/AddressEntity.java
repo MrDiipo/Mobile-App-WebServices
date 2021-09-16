@@ -82,7 +82,7 @@ public class AddressEntity implements Serializable {
 
     public void setAddressId(String addressId) {
         Utils utils = new Utils();
-        addressId = utils.generateAddressId(10);
+        addressId = utils.generateAddressId(30);
         this.addressId = addressId;
     }
 

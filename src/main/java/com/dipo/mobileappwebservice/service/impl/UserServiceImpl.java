@@ -4,8 +4,10 @@ import com.dipo.mobileappwebservice.exceptions.UserServiceException;
 import com.dipo.mobileappwebservice.io.repositories.UserRepository;
 import com.dipo.mobileappwebservice.io.entity.UserEntity;
 import com.dipo.mobileappwebservice.shared.Utils;
+import com.dipo.mobileappwebservice.shared.dto.AddressDto;
 import com.dipo.mobileappwebservice.shared.dto.UserDto;
 import com.dipo.mobileappwebservice.ui.model.response.ErrorMessages;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -38,8 +40,17 @@ public class UserServiceImpl implements UserService {
 
         if (userRepository.findByEmail(user.getEmail()) != null) throw new RuntimeException("Record already exists");
 
+       for (int i=0; i<user.getAddresses().size(); i++){
+           AddressDto addressDto = user.getAddresses().get(i);
+           addressDto.setUserDto(user);
+           addressDto.setAddressId(utils.generateAddressId(30));
+           user.getAddresses().set(i, addressDto);
+       }
+
         UserEntity userEntity = new UserEntity();
-        BeanUtils.copyProperties(user, userEntity);
+//        BeanUtils.copyProperties(user, userEntity);
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.map(user, userEntity);
 
         String publicUserId = utils.generateUserId(30);
         userEntity.setEncryptedPassword(bCryptPasswordEncoder.encode(user.getPassword()));
@@ -47,8 +58,8 @@ public class UserServiceImpl implements UserService {
         UserEntity storedUserDetails = userRepository.save(userEntity);
 
         UserDto returnValue = new UserDto();
-        BeanUtils.copyProperties(storedUserDetails, returnValue);
-
+//        BeanUtils.copyProperties(storedUserDetails, returnValue);
+        modelMapper.map(storedUserDetails, UserDto.class);
         return returnValue;
     }
 

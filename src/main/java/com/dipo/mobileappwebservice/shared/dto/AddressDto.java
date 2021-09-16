@@ -8,6 +8,7 @@ public class AddressDto {
     private String streetName;
     private String postalCode;
     private String type;
+    private String addressId;
     private  UserDto userDto;
 
     public String getCity() {
@@ -42,11 +43,27 @@ public class AddressDto {
         this.postalCode = postalCode;
     }
 
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public String getType() {
         return type;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public UserDto getUserDto() {
+        return userDto;
+    }
+
+    public void setUserDto(UserDto userDto) {
+        this.userDto = userDto;
+    }
+
+    public String getAddressId() {
+        return addressId;
+    }
+
+    public void setAddressId(String addressId) {
+        this.addressId = addressId;
     }
 }
