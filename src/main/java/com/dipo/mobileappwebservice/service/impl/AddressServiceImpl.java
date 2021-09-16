@@ -3,7 +3,7 @@ package com.dipo.mobileappwebservice.service.impl;
 import com.dipo.mobileappwebservice.io.entity.AddressEntity;
 import com.dipo.mobileappwebservice.io.entity.UserEntity;
 import com.dipo.mobileappwebservice.io.repositories.UserRepository;
-import com.dipo.mobileappwebservice.service.AddressRepository;
+import com.dipo.mobileappwebservice.io.repositories.AddressRepository;
 import com.dipo.mobileappwebservice.service.AddressService;
 import com.dipo.mobileappwebservice.shared.dto.AddressDto;
 import org.modelmapper.ModelMapper;
