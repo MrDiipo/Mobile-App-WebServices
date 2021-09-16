@@ -1,6 +1,7 @@
 package com.dipo.mobileappwebservice.ui.controller;
 
 import com.dipo.mobileappwebservice.exceptions.UserServiceException;
+import com.dipo.mobileappwebservice.service.impl.AddressService;
 import com.dipo.mobileappwebservice.service.impl.UserService;
 import com.dipo.mobileappwebservice.shared.dto.AddressDto;
 import com.dipo.mobileappwebservice.shared.dto.UserDto;
@@ -22,12 +23,11 @@ import java.util.List;
 @RequestMapping("/users") // http://localhost:8080/users
 public class UserController {
 
+    @Autowired
     private UserService userService;
 
     @Autowired
-    public void setUserService(UserService userService) {
-        this.userService = userService;
-    }
+    private AddressService addressService;
 
     @GetMapping(path = "/{userId}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
     public UserRest getUser(@PathVariable("userId") String userId) {
@@ -118,7 +118,7 @@ public class UserController {
 
         List<AddressRest> returnValue = new ArrayList<>();
 
-        List<AddressDto> addressesDto = addressesService.getAddresses(userId);
+        List<AddressDto> addressesDto = addressService.getAddresses(userId);
 
         ModelMapper modelMapper = new ModelMapper();
         Type listType = new TypeToken<List<AddressRest>>(){}.getType();
