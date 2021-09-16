@@ -15,6 +15,8 @@ import org.springframework.hateoas.Link;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -135,11 +137,11 @@ public class UserController {
 
         ModelMapper modelMapper = new ModelMapper();
 
-        Link addressLink = linkTo(UserController.class).slash(userId).slash("addresses").slash("addressId").withSelfRel();
+        Link addressLink = linkTo(methodOn(UserController.class).getUserAddress(userId, addressId)).withSelfRel();
 
         Link userLink = linkTo(UserController.class).slash(userId).slash("userId").withRel("user");
 
-        Link addressesLink = linkTo(UserController.class).slash(userId).slash("addresses").withRel("addresses");
+        Link addressesLink = linkTo(methodOn(UserController.class).getAddresses(userId)).withRel("addresses");
 
         AddressRest addressRestModel = modelMapper.map(addressesDto, AddressRest.class);
 
