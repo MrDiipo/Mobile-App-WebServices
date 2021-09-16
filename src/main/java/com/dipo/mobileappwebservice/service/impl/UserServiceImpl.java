@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
         UserEntity userEntity = new UserEntity();
 //        BeanUtils.copyProperties(user, userEntity);
         ModelMapper modelMapper = new ModelMapper();
-        modelMapper.map(user, UserEntity.class);
+        userEntity = modelMapper.map(user, UserEntity.class);
 
         String publicUserId = utils.generateUserId(30);
         userEntity.setEncryptedPassword(bCryptPasswordEncoder.encode(user.getPassword()));
