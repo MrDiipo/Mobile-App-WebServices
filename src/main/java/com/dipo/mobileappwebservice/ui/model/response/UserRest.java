@@ -1,11 +1,14 @@
 package com.dipo.mobileappwebservice.ui.model.response;
 
+import java.util.List;
+
 public class UserRest {
 
     private String userId;
     private String firstName;
     private String lastName;
     private String email;
+    private List<AddressRest> addressRests;
 
     public String getUserId() {
         return userId;
@@ -37,5 +40,13 @@ public class UserRest {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<AddressRest> getAddressRests() {
+        return addressRests;
+    }
+
+    public void setAddressRests(List<AddressRest> addressRests) {
+        this.addressRests = addressRests;
     }
 }

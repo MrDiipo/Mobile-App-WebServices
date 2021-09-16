@@ -41,7 +41,6 @@ public class UserEntity implements Serializable {
     @OneToMany(mappedBy = "userDto", cascade = CascadeType.ALL)
     private List<AddressEntity> addressEntities;
 
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -74,6 +73,8 @@ public class UserEntity implements Serializable {
         this.lastName = lastName;
     }
 
+
+
     public String getEmail() {
         return email;
     }
@@ -104,5 +105,13 @@ public class UserEntity implements Serializable {
 
     public void setEmailVerificationStatus(Boolean emailVerificationStatus) {
         this.emailVerificationStatus = emailVerificationStatus;
+    }
+
+    public List<AddressEntity> getAddressEntities() {
+        return addressEntities;
+    }
+
+    public void setAddressEntities(List<AddressEntity> addressEntities) {
+        this.addressEntities = addressEntities;
     }
 }

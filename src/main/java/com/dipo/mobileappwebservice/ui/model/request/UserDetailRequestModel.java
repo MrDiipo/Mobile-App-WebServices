@@ -9,14 +9,6 @@ public class UserDetailRequestModel {
     private String email;
     private String password;
 
-    public List<AddressRequestModel> getAddresses() {
-        return addresses;
-    }
-
-    public void setAddresses(List<AddressRequestModel> addresses) {
-        this.addresses = addresses;
-    }
-
     private List<AddressRequestModel> addresses;
 
 
@@ -50,5 +42,13 @@ public class UserDetailRequestModel {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<AddressRequestModel> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<AddressRequestModel> addresses) {
+        this.addresses = addresses;
     }
 }

@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto createUser(UserDto user) {
 
-        if (userRepository.findByEmail(user.getEmail()) != null) throw new RuntimeException("Record already exists");
+        if (userRepository.findByEmail(user.getEmail()) == null) throw new RuntimeException("Record already exists");
 
        for (int i=0; i<user.getAddresses().size(); i++){
            AddressDto addressDto = user.getAddresses().get(i);
@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
         UserEntity userEntity = new UserEntity();
 //        BeanUtils.copyProperties(user, userEntity);
         ModelMapper modelMapper = new ModelMapper();
-        modelMapper.map(user, userEntity);
+        modelMapper.map(user, UserEntity.class);
 
         String publicUserId = utils.generateUserId(30);
         userEntity.setEncryptedPassword(bCryptPasswordEncoder.encode(user.getPassword()));
