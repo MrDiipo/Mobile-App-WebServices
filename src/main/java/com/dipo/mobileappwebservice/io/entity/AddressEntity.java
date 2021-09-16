@@ -1,5 +1,6 @@
 package com.dipo.mobileappwebservice.io.entity;
 
+import com.dipo.mobileappwebservice.shared.Utils;
 import com.dipo.mobileappwebservice.shared.dto.UserDto;
 import com.sun.istack.NotNull;
 
@@ -80,6 +81,8 @@ public class AddressEntity implements Serializable {
     }
 
     public void setAddressId(String addressId) {
+        Utils utils = new Utils();
+        addressId = utils.generateAddressId(10);
         this.addressId = addressId;
     }
 

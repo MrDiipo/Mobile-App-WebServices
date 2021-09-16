@@ -23,4 +23,8 @@ public class Utils {
         }
         return new String(returnValue);
     }
+
+    public String generateAddressId(int length) {
+        return generateRandomString(length);
+    }
 }
