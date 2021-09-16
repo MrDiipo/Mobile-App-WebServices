@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Entity(name = "addresses")
 public class AddressEntity implements Serializable {
 
-    @Id
+    @javax.persistence.Id
     @GeneratedValue
     private long id;
 

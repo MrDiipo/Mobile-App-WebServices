@@ -8,10 +8,12 @@ import com.dipo.mobileappwebservice.service.AddressService;
 import com.dipo.mobileappwebservice.shared.dto.AddressDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class AddressServiceImpl implements AddressService {
 
     @Autowired
@@ -28,12 +30,24 @@ public class AddressServiceImpl implements AddressService {
 
         UserEntity userEntity = userRepository.findByUserId(userId);
 
-        Iterable<AddressEntity> addressEntities = addressRepository.findAllByUserDetails(userEntity);
+        Iterable<AddressEntity> addressEntities = addressRepository.findAllByUserDto(userEntity);
 
         for (AddressEntity addressEntity : addressEntities) {
             returnValue.add(modelMapper.map(addressEntity, AddressDto.class));
         }
 
         return returnValue;
+    }
+
+    @Override
+    public AddressDto getAddress(String addressId) {
+      AddressDto returnValue = null;
+
+      AddressEntity addressEntity = addressRepository.findByAddressId(addressId);
+
+      if (addressEntity != null){
+          returnValue = new ModelMapper().map(addressEntity, AddressDto.class);
+      }
+      return returnValue;
     }
 }
