@@ -5,10 +5,15 @@ import com.dipo.mobileappwebservice.shared.dto.UserDto;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import java.io.Serial;
 import java.io.Serializable;
 
-@Entity(name = "addresses")
-public class AddressEntity implements Serializable {
+@Entity
+@Table(name = "addresses")
+public class AddressEntity implements Serializable{
+
+    @Serial
+    private static final long serialVersionUID = -5686807838041933637L;
 
     @javax.persistence.Id
     @GeneratedValue

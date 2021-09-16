@@ -11,8 +11,10 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.Link;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -126,12 +128,17 @@ public class UserController {
         return returnValue;
     }
     @GetMapping(path = "/{userId}/addresses/{addressId}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
-    public AddressRest getUserAddress(@PathVariable("addressId") String addressId) {
+    public AddressRest getUserAddress(@PathVariable("addressId") String userId,
+                                      @PathVariable("addressId") String addressId) {
 
         AddressDto addressesDto = addressService.getAddress(addressId);
 
         ModelMapper modelMapper = new ModelMapper();
 
+        Link addressLink = linkTo(UserController.class).slash(userId).slash("addresses").slash("addressId").withSelfRel();
+
+        AddressRest addressRestModel = modelMapper.map(addressesDto, AddressRest.class);
+        addressRestModel.add(addressLink);
 
         return modelMapper.map(addressesDto, AddressRest.class);
     }

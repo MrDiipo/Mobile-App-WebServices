@@ -1,8 +1,8 @@
 package com.dipo.mobileappwebservice.ui.model.response;
 
-import com.dipo.mobileappwebservice.shared.dto.UserDto;
+import org.springframework.hateoas.RepresentationModel;
 
-public class AddressRest {
+public class AddressRest extends RepresentationModel {
 
     private String city;
     private String country;

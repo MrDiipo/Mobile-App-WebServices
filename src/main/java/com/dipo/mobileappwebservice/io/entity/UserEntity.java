@@ -6,9 +6,11 @@ import org.springframework.data.annotation.Id;
 import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-@Entity(name = "users")
+@Entity
+@Table(name = "users")
 public class UserEntity implements Serializable {
 
     @Serial
@@ -39,7 +41,7 @@ public class UserEntity implements Serializable {
     private Boolean emailVerificationStatus = false;
 
     @OneToMany(mappedBy = "userDto", cascade = CascadeType.ALL)
-    private List<AddressEntity> addressEntities;
+    private List<AddressEntity> addressEntities = new ArrayList<>();
 
     public void setId(Long id) {
         this.id = id;
@@ -72,8 +74,6 @@ public class UserEntity implements Serializable {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
-
 
     public String getEmail() {
         return email;
