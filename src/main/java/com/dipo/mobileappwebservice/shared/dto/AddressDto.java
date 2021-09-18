@@ -9,7 +9,8 @@ public class AddressDto {
     private String postalCode;
     private String type;
     private String addressId;
-    private  UserDto userDto;
+
+    private UserDto userDto;
 
     public String getCity() {
         return city;
@@ -51,13 +52,6 @@ public class AddressDto {
         return type;
     }
 
-    public UserDto getUserDto() {
-        return userDto;
-    }
-
-    public void setUserDto(UserDto userDto) {
-        this.userDto = userDto;
-    }
 
     public String getAddressId() {
         return addressId;
@@ -65,5 +59,21 @@ public class AddressDto {
 
     public void setAddressId(String addressId) {
         this.addressId = addressId;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public UserDto getUserDto() {
+        return userDto;
+    }
+
+    public void setUserDto(UserDto userDto) {
+        this.userDto = userDto;
     }
 }

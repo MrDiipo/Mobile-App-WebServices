@@ -2,7 +2,7 @@ package com.dipo.mobileappwebservice.ui.model.response;
 
 import org.springframework.hateoas.RepresentationModel;
 
-public class AddressRest extends RepresentationModel {
+public class AddressRest extends RepresentationModel<AddressRest> {
 
     private String city;
     private String country;

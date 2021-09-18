@@ -41,7 +41,7 @@ public class UserEntity implements Serializable {
     private Boolean emailVerificationStatus = false;
 
     @OneToMany(mappedBy = "userDto", cascade = CascadeType.ALL)
-    private List<AddressEntity> addressEntities = new ArrayList<>();
+    private List<AddressEntity> addressEntities;
 
     public void setId(Long id) {
         this.id = id;

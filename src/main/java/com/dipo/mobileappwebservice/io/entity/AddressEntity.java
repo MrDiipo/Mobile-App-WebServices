@@ -15,8 +15,8 @@ public class AddressEntity implements Serializable{
     @Serial
     private static final long serialVersionUID = -5686807838041933637L;
 
-    @javax.persistence.Id
     @GeneratedValue
+    @javax.persistence.Id
     private long id;
 
     @Column(length = 30, nullable = false)
@@ -40,6 +40,14 @@ public class AddressEntity implements Serializable{
     @ManyToOne
     @JoinColumn(name = "users_id")
     private UserEntity userDto;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getCity() {
         return city;

@@ -11,6 +11,8 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.Link;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +34,7 @@ public class UserController {
     @Autowired
     private AddressService addressService;
 
-    @GetMapping(path = "/{userId}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+    @GetMapping(path = "/{userId}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE, "application/hal+json"})
     public UserRest getUser(@PathVariable("userId") String userId) {
 
         UserRest userRest = new UserRest();
@@ -117,7 +119,7 @@ public class UserController {
 
     // http://localhost:8080/mobile-app-ws/users/ghetme/addresses
     @GetMapping(path = "/{userId}/addresses", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
-    public List<AddressRest> getAddresses(@PathVariable("userId") String userId) {
+    public CollectionModel<AddressRest> getAddresses(@PathVariable("userId") String userId) {
 
         List<AddressRest> returnValue = new ArrayList<>();
 
@@ -127,10 +129,10 @@ public class UserController {
         Type listType = new TypeToken<List<AddressRest>>(){}.getType();
         returnValue = new ModelMapper().map(addressesDto, listType);
 
-        return returnValue;
+        return (CollectionModel<AddressRest>) returnValue;
     }
-    @GetMapping(path = "/{userId}/addresses/{addressId}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
-    public AddressRest getUserAddress(@PathVariable("userId") String userId,
+    @GetMapping(path = "/{userId}/addresses/{addressId}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE, "application/hal+json"})
+    public EntityModel<AddressRest> getUserAddress(@PathVariable("userId") String userId,
                                       @PathVariable("addressId") String addressId) {
 
         AddressDto addressesDto = addressService.getAddress(addressId);
@@ -149,7 +151,7 @@ public class UserController {
         addressRestModel.add(userLink);
         addressRestModel.add(addressesLink);
 
-        return modelMapper.map(addressesDto, AddressRest.class);
+        return new (EntityModel<AddressRest>) modelMapper.map(addressesDto, AddressRest.class);
     }
 
 }
